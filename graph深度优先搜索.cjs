@@ -1,3 +1,4 @@
+// 深度优先搜索
 const fs = require('fs');
 // 第一个参数0表示输入流stdin
 const input = fs.readFileSync(0, 'utf-8').trim().split('\n');
