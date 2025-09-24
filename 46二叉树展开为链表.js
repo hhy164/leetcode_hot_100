@@ -1,29 +1,24 @@
 var flatten = function (root) {
   const deep = (root) => {
-    if (!root) return null;
-    // 递归展开左子树
-    const left = deep(root.left);
-    // 递归展开右子树
-    const right = deep(root.right);
+    if (!root) return root;
 
-    // 处理当前节点：将左子树放到右子树的位置
+    const left = deep(root.left)
+
+    const right = deep(root.right)
+
     if (left) {
+      root.left = null
       root.right = left;
-      root.left = null;
-
-      // 寻找左子树的最右节点
       let cur = root;
       while (cur.right) {
         cur = cur.right;
       }
-
-      // 将右子树连接到左子树的最右节点
       cur.right = right;
     }
-    return root;
-  };
 
-  return deep(root);
+    return root;
+  }
+  return deep(root)
 };
 
 const root = {

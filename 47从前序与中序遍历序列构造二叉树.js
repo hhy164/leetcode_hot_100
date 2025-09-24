@@ -1,31 +1,34 @@
-var buildTree = function (preorder, inorder) {
-  const deep = (preorder, inorder) => {
-    if (!preorder.length) return null;
-    // 中序遍历第一个节点为根节点
-    let root = new TreeNode(preorder[0])
-    const index = inorder.findIndex(item => item === root.val);
-
-    // 中序遍历分割
-    const leftInorder = inorder.slice(0, index);
-    const rightInofer = inorder.slice(index + 1, inorder.length);
-    // 前序遍历分割
-    const leftPreorder = preorder.slice(1, leftInorder.length + 1);
-    const rightPreofer = preorder.slice(leftInorder.length + 1)
-
-    root.left = deep(leftPreorder, leftInorder)
-    root.right = deep(rightPreofer, rightInofer)
-    return root;
-  }
-  return deep(preorder, inorder)
-};
 class TreeNode {
   constructor(val) {
     this.val = val;
     this.left = null;
-    this.right = null
+    this.right = null;
   }
 }
-// preorder->前序 中左右 inorder中序 左中右
+var buildTree = function (preorder, inorder) {
+  if (!preorder) return null;
+  const deep = (preorder, inorder) => {
+    if (!preorder.length) return null
+    if (preorder.length === 1) {
+      return new TreeNode(preorder[0])
+    }
+    const rootVal = preorder[0]
+    let root = new TreeNode(rootVal)
+    // 中序切割
+    const index = inorder.indexOf(rootVal);
+    // 中序左子树
+    const inorderArr1 = inorder.slice(0, index)
+    // 中序右子树
+    const inorderArr2 = inorder.slice(index + 1)
+    // 前序切割
+    const preorderArr1 = preorder.slice(1, 1 + inorderArr1.length)
+    const preorderArr2 = preorder.slice(1 + inorderArr1.length)
+    root.left = deep(preorderArr1, inorderArr1)
+    root.right = deep(preorderArr2, inorderArr2);
+    return root;
+  }
+  return deep(preorder, inorder)
+};
+
 const preorder = [3, 9, 20, 15, 7], inorder = [9, 3, 15, 20, 7]
-const result = buildTree(preorder, inorder);
-console.log(result)
+const result = buildTree(preorder, inorder)

@@ -1,5 +1,3 @@
-// 二叉搜索树左边的元素都比根节点小，右边元素都比根节点大
-// 中序遍历得到的结果是从小到大排序的
 var kthSmallest = function (root, k) {
   let result;
   const deep = (root) => {
@@ -20,22 +18,13 @@ var kthSmallest = function (root, k) {
 };
 
 const root = {
-  val: 5,
+  val: 3,
   left: {
-    val: 3,
-    left: {
-      val: 2,
-      left: {
-        val: 1
-      }
-    },
-    right: {
-      val: 4
-    }
+    val: 1,
+    right: { val: 2 }
   },
-  right: {
-    val: 6
-  }
+  right: { val: 4 }
 }
-const result = kthSmallest(root, 3)
+
+const result = kthSmallest(root, 1)
 console.log(result)
