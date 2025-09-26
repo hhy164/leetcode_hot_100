@@ -23,7 +23,6 @@ var orangesRotting = function (grid) {
   const directions = [[1, 0], [0, 1], [-1, 0], [0, -1]];
   while (queue.length && fresh) {
     const len = queue.length;
-    let isBad = false; // 是否有新鲜橘子变坏
     for (let i = 0; i < len; i++) {
       const cur = queue.shift();
       // 遍历四个方向
@@ -37,14 +36,11 @@ var orangesRotting = function (grid) {
         if (grid[nextX][nextY] === 1) {
           fresh--
           grid[nextX][nextY] = 2;
-          isBad = true;
           queue.push([nextX, nextY])
         }
       }
     }
-    if (isBad) {
-      time++
-    }
+    time++
   }
   if (fresh) {
     return -1
