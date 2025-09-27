@@ -1,8 +1,6 @@
-6
-abc def
-efc
-dbc
-ebc
-dec
-dfc
-yhn
+4 5
+1 2
+2 1
+1 3
+2 4
+3 4
