@@ -1,5 +1,25 @@
-// 1.将两个元素添加到同一个集合
-// 2.判断两个元素是否在同一个集合
+const fs = require('fs');
+const input = fs.readFileSync(0, 'utf-8').split('\n');
+const [n, m] = input[0].split(' ').map(Number);
+// 1.边排序
+// 2.如果边端点不在同一个集合（利用并查集来判断是否在同一个集合）
+const edges = input.slice(1).map(x => x.split(' ').map(Number));
+edges.sort((a, b) => {
+  return a[2] - b[2];
+})
+
+const father = [];
+init(n + 1);
+
+let result = 0;
+for (const [s, t, value] of edges) {
+  if (!isSame(s, t)) {
+    join(s, t);
+    result += value;
+  }
+}
+
+console.log(result);
 
 // 将两个元素添加到同一个集合
 function join(a, b) {
