@@ -1,3 +1,4 @@
+// 最小生成树是从图里面找到一颗树，路径最短，联通了所有的点
 const fs = require('fs');
 const input = fs.readFileSync(0, 'utf-8').split('\n');
 const [n, m] = input[0].split(' ').map(Number);
