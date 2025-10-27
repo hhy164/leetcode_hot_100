@@ -9,10 +9,11 @@ var jump = function (nums) {
       // 已经走到当前的最远下标了
       step++;
       cover = nextCover;
-      if (cover >= nums.length - 1) break;
+      if (cover >= nums.length - 1) {
+        return step;
+      };
     }
   }
-  return step;
 };
 const nums = [2, 1, 1, 1, 4];
 const result = jump(nums);
